@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Webapp WS</title>
+</head>
+<body>
+<!-- ------------NAVIGATION BAR-------------- -->
+    <nav class="container flex justify-around py-8 mx-auto bg-gray-100 shadow-2xl sticky top-0 z-50">
+        <div>
+          <h3 class="text-2xl font-medium text-blue-500">Hardware Project Portal</h3>
+        </div>
+        <div class="space-x-8">
+          <a href="#">Home</a>
+          <a href="/createPost.html">Create Posts</a>
+          <a href="">My Profile</a>
+          <a href="/index.html">Logout</a>
+        </div>
+    </nav>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      import { firebaseConfig } from './appconfig.js';
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+          getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+      }
+      from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+
+      // import{getStorage, ref as sRef}
+      // from "https://www.gstatic.com/firebasejs/9.8.4/firebase-storage.js"
+        var div
+      const db= getFirestore();
+      import { getDocs } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js";
+
+        const querySnapshot = await getDocs(collection(db, "Post"));
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          //console.log(doc.id, " => ", doc.data());          
+          div=document.createElement("div")
+          div.innerHTML+="<h3>Hello World</h3>"
+          console.log(div);
+          document.getElementById("ProjectName").innerText=doc.data().NameOfProject
+          document.getElementById("ProjectDesc").innerText=doc.data().Description
+          document.getElementById("type").innerText=doc.data().TypeOfProject
+          document.getElementById("link").href=doc.data().SourceLink
+
+
+
+        });
+        
+  
+  
+  </script>
+
+  
+<div class="container mx-auto w-1/2 px-20 my-8">
+
+  <div class="border bg-cyan-900 bg-opacity-25 rounded-lg p-6 text-black relative z-10 shadow-2xl">
+                  
+    <div class="flex flex-wrap items-center"> 
+  
+                      
+       <div class="flex w-full h-48 md:h-64 lg:h-72">
+                                                  
+        <div class="w-8/12 pr-4 relative">
+                              
+                              
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Raspberry_Pi_3_Model_B.png" class="w-full h-full object-cover object-top rounded-lg bg-white">
+                          
+        </div>
+                          
+        <div class="w-4/12 h-full">
+                              
+          <div class="flex flex-col w-full h-full">
+                                  
+            <div class="flex-1 pb-2">
+                                      
+              <div class="w-full h-full relative">
+                                          
+                <img src="https://5.imimg.com/data5/RV/XH/MY-43948449/ultrasonic-sensor-hc-sr04-module-for-arduino-500x500.jpg" class="absolute top-0 w-full h-full object-cover object-center rounded-lg bg-white">
+                                      
+              </div>
+                                  
+            </div>
+                                  
+            <div class="flex-1 pt-2">
+                                      
+              <div class="w-full h-full relative">
+                                          
+                <img src="https://5.imimg.com/data5/YN/CM/MY-9380557/arduino-uno-ch340-500x500.jpg" class="absolute top-0 w-full h-full object-cover object-bottom rounded-lg bg-white">
+                                      
+              </div>
+                                  
+            </div>
+                              
+          </div>
+                          
+        </div>
+                      
+      </div>
+  
+                      
+      <div class="w-full pt-8 flex flex-col justify-between">
+                          
+        <div>
+                              
+          <h2 class="font-bold text-xl" id="ProjectName"><h2>
+                              
+          <div class="flex flex-wrap text-center pt-4 mb-2">
+                                                                      
+            <div class="mr-2 mb-2 rounded-full px-3 py-1 text-xs bg-green-400 text-green-900" id="type"></div>
+                                                                      
+                                                              
+          </div>
+                              
+          <p class="text-xs leading-relaxed text-black" id="ProjectDesc"></p>
+                                                              
+                                                                      
+        </div>
+                          
+        <div class="w-full sm:flex-1 grid gap-4 grid-cols-2 pt-6">
+                              
+          <a id="link" class="flex items-center justify-center text-center relative font-bold text-sm text-white bg-teal-800 px-8 py-3 rounded-lg shadow-lg hover:shadow-none hover:opacity-75">Visit Link</a>
+  
+                                                                                                                                          
+          <button class="w-full block text-center relative text-white font-bold text-sm bg-teal-800 px-4 py-3 rounded-lg shadow-lg hover:shadow-none hover:opacity-75">Preview</button>
+                                                                                                                          
+        </div>
+                      
+      </div>
+  
+                  
+    </div>
+              
+  </div>
+  </div> 
+
+
+
+</div>
+
+
+    
+</body>
+</html>
